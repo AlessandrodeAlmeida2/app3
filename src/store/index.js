@@ -32,6 +32,15 @@ export default createStore({
     storeUser(state, data) {
       state.user = data;
       console.log('storeUser', data);
+    },
+
+    addProduct(state, data) {
+      state.cart.push(data)
+    },
+
+    removeProduct(state, id) {
+      const idx = state.cart.findIndex(o => o.id === id)
+      state.cart.splice(idx, 1);
     }
   },
   actions: {
