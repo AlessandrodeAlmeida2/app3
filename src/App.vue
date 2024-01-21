@@ -3,7 +3,9 @@
   <pre>
     {{ $store.state.cart }}
   </pre>
+  {{ $store.getters.total }}
   <HelloWorld />
+  <br><br>
 <br><br>
   <button @click="updateUser">
     Save user
@@ -32,7 +34,10 @@ export default {
       last_name: 'Almeida',
       email: 'almeida@.com'
     }
-    this.$store.commit('storeUser', newUser)
+    //this.$store.commit('storeUser', newUser)
+    this.$store.dispatch('storeUser', newUser).then(() => {
+      console.log('terminou!');
+    })
     }
   }
 }

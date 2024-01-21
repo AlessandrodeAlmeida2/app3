@@ -1,3 +1,4 @@
+
 import { createStore } from 'vuex'
 
 export default createStore({
@@ -27,6 +28,9 @@ export default createStore({
     cart: []
   },
   getters: {
+    total(state) {
+      return state.cart.reduce((total, item) => total += item.price, 0)
+    }
   },
   mutations: {
     storeUser(state, data) {
@@ -44,6 +48,18 @@ export default createStore({
     }
   },
   actions: {
+    // actions é necessária para usar promessas- operações assincronas
+    storeUser(context, data) {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve()
+          console.log('here');
+          context.commit('storeUser', data);
+          let total = context.getters.total;
+          resolve(total);    
+        }, 3000)
+      })
+    }    
   },
   modules: {
   }
