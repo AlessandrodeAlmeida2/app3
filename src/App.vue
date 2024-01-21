@@ -1,5 +1,8 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
+  <button @click="updateUser">
+    Save user
+  </button>
   <HelloWorld msg="Welcome to Your Vue.js App"/>
 </template>
 
@@ -10,6 +13,20 @@ export default {
   name: 'App',
   components: {
     HelloWorld
+  },
+  data() {
+    return {
+    }
+  },
+  methods: {
+    updateUser() {
+      const newUser = {
+      first_name: 'Alessandro',
+      last_name: 'Almeida',
+      email: 'almeida@.com'
+    }
+    this.$store.commit('storeUser', newUser)
+    }
   }
 }
 </script>
